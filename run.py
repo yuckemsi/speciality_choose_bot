@@ -1,4 +1,4 @@
-from app.bot import bot
+from app.handlers import bot
 
 def main():
     bot.polling(non_stop=True)
