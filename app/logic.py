@@ -2,6 +2,8 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from telebot.types import User as TeleBotUser
 
+from app.keyboards import kb
+
 kb1 = InlineKeyboardMarkup()
 kb1.add(InlineKeyboardButton(text='Среднее', callback_data='answer_Среднее'))
 kb1.add(InlineKeyboardButton(text='Высшее (бакалавр)', callback_data='answer_Высшее (бакалавр)'))
@@ -76,10 +78,10 @@ def start_quiz(user, bot, message):
             recommended_professions = recommend_professions(user.answers[2], user.answers[3], user.answers[4])
 
             if recommended_professions:
-               bot.send_message(message.chat.id, "На основе твоих ответов, вот несколько профессий, которые могут тебя заинтересовать:")
-               for profession in recommended_professions:
-                   bot.send_message(message.chat.id,f"- {profession}")
-
+                bot.send_message(message.chat.id, "На основе твоих ответов, вот несколько профессий, которые могут тебя заинтересовать:")
+                for profession in recommended_professions:
+                    bot.send_message(message.chat.id,f"- {profession}")
+                bot.send_message(message.chat.id, "Основное меню", reply_markup=kb.main())
                 
             else:
                bot.send_message(message.chat.id, 'К сожалению, я не нашел подходящих профессий на основе твоих ответов.')

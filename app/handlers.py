@@ -46,7 +46,7 @@ def callback(call):
         bot.send_message(call.message.chat.id, 'Здесь будут отзывы пользователей о профессиях', reply_markup=kb.reviews_menu(call.message.chat.id))
     elif call.data == 'all_reviews':
         if not db.get_reviews():
-            bot.send_message(call.message.chat.id, 'Отзывов пока нет')
+            bot.send_message(call.message.chat.id, 'Отзывов пока нет', reply_markup=kb.reviews_menu(call.message.chat.id))
         else:
             bot.send_message(call.message.chat.id, 'ОТЗЫВЫ', reply_markup=kb.all_reviews(db))
     elif call.data == 'add_review':
